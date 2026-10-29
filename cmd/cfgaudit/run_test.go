@@ -195,8 +195,8 @@ func TestRun_ConfigErrors(t *testing.T) {
 func TestRun_RepeatedConfigWarnsAndUsesLast(t *testing.T) {
 	root := runFixture(t, map[string]string{
 		".claude/settings.json": warnSettings,
-		"first.yml":            "strict: true\\n",
-		"second.yml":           "strict: false\\n",
+		"first.yml":            "strict: true\n",
+		"second.yml":           "strict: false\n",
 	})
 	first := filepath.Join(root, "first.yml")
 	second := filepath.Join(root, "second.yml")
