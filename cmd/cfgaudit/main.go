@@ -100,7 +100,7 @@ func run(args []string, stdin io.Reader, stdout, stderr io.Writer) int {
 	}
 
 	for _, id := range overlappingRuleIDs(only, skip) {
-		_, _ = fmt.Fprintf(stderr, "cfgaudit: %s is in both --only and --skip; it does not run\\n", id)
+		_, _ = fmt.Fprintf(stderr, "cfgaudit: %s is in both --only and --skip; it does not run\n", id)
 	}
 	if unknown := unknownRuleIDs(only, skip, rules.All); len(unknown) > 0 {
 		_, _ = fmt.Fprintf(stderr, "cfgaudit: --only/--skip references unknown rule(s): %s\n", strings.Join(unknown, ", "))
@@ -137,7 +137,7 @@ func run(args []string, stdin io.Reader, stdout, stderr io.Writer) int {
 	}
 	if len(configPaths) > 1 {
 		ignored := strings.Join(configPaths[:len(configPaths)-1], ", ")
-		_, _ = fmt.Fprintf(stderr, "cfgaudit: --config given more than once; using %s, ignoring %s\\n", configPath, ignored)
+		_, _ = fmt.Fprintf(stderr, "cfgaudit: --config given more than once; using %s, ignoring %s\n", configPath, ignored)
 	}
 	cfg, cfgPath, err := loadConfig(configPath, dir)
 	if err != nil {
