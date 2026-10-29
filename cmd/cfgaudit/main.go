@@ -3261,10 +3261,6 @@ func (rs *ruleSet) Set(v string) error {
 	return nil
 }
 
-// ruleFilter builds the `accept` predicate that rules.Run consults.
-// only takes precedence: when non-empty, a rule must appear in it to run.
-// skip then excludes any remaining matches.
-// A nil return means "no filtering" (all rules run).
 func overlappingRuleIDs(only, skip ruleSet) []string {
 	var ids []string
 	for id := range only {
@@ -3276,6 +3272,10 @@ func overlappingRuleIDs(only, skip ruleSet) []string {
 	return ids
 }
 
+// ruleFilter builds the `accept` predicate that rules.Run consults.
+// only takes precedence: when non-empty, a rule must appear in it to run.
+// skip then excludes any remaining matches.
+// A nil return means "no filtering" (all rules run).
 func ruleFilter(only, skip ruleSet) func(rules.Rule) bool {
 	if len(only) == 0 && len(skip) == 0 {
 		return nil
