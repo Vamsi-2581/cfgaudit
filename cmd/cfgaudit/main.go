@@ -3220,6 +3220,9 @@ func mcpConfigTargets(dir string, includeUser bool) ([]*rules.Target, error) {
 // ruleSet is a flag.Value that collects rule IDs from one or more occurrences
 // of a flag. Each occurrence may pass a comma-separated list. Whitespace and
 // empty entries are tolerated. Used by `--only` and `--skip`.
+type ruleSet map[string]bool
+
+// stringFlagValues stores each occurrence of a flag and exposes the last value.
 type stringFlagValues []string
 
 func (values *stringFlagValues) String() string {
@@ -3234,7 +3237,6 @@ func (values *stringFlagValues) Set(value string) error {
 	return nil
 }
 
-type ruleSet map[string]bool
 
 func (rs *ruleSet) String() string {
 	if rs == nil || *rs == nil {
