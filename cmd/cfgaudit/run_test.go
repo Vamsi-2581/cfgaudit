@@ -201,7 +201,7 @@ func TestRun_RepeatedConfigWarnsAndUsesLast(t *testing.T) {
 	first := filepath.Join(root, "first.yml")
 	second := filepath.Join(root, "second.yml")
 
-	code, _, stderr := runCLI("--claude-version", "2.1.0", "--config", first, "--config", second, root)
+	code, _, stderr := runCLI(t, "--claude-version", "2.1.0", "--config", first, "--config", second, root)
 	if code != 0 {
 		t.Errorf("last --config should win with strict disabled; exit code = %d, stderr = %q", code, stderr)
 	}
@@ -213,7 +213,7 @@ func TestRun_RepeatedConfigWarnsAndUsesLast(t *testing.T) {
 
 func TestRun_OverlappingOnlyAndSkipWarnsPerRule(t *testing.T) {
 	root := runFixture(t, nil)
-	code, _, stderr := runCLI("--only", "CFG001,CFG002", "--skip", "CFG002,CFG001", root)
+	code, _, stderr := runCLI(t, "--only", "CFG001,CFG002", "--skip", "CFG002,CFG001", root)
 	if code != 0 {
 		t.Errorf("overlapping filters must not change the exit code; got %d, stderr = %q", code, stderr)
 	}
